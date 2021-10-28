@@ -133,21 +133,20 @@ body {
     right: 0;
     bottom: 0;
     left: 0;
-    font-size: 1000;
+    font-size: 100px;
     text-align: center;
     margin: auto;
-    width: 400px;
     height: 300px;
   }
 
 
 body {
-    background-image: url("images/CF謎11.png");
+    background-image: url("images/CF謎ED.png");
     background-repeat: no-repeat;
     background-position : 50%,50%;
     background-attachment: fixed;
     background-size: contain;  
-    background-color:rgba(255,255,255,0.8);
+    background-color:rgba(255, 255, 255, 0.493);
     background-blend-mode:lighten;   
  }
   
