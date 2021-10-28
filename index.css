@@ -78,7 +78,7 @@ body {
 }
 
 .circles li:nth-child(7){
-    left: 35%;
+    left: 30%;
     width: 150px;
     height: 150px;
     animation-delay: 7s;
@@ -133,11 +133,15 @@ body {
     right: 0;
     bottom: 0;
     left: 0;
-    font-size: 100px;
+    font-size: 60px;
     text-align: center;
     margin: auto;
-    height: 300px;
+    height: 600px;
   }
+
+h1 {
+    font-size: 120px;
+}
 
 
 body {
@@ -146,7 +150,7 @@ body {
     background-position : 50%,50%;
     background-attachment: fixed;
     background-size: contain;  
-    background-color:rgba(255, 255, 255, 0.493);
+    background-color:rgba(255, 255, 255, 0.781);
     background-blend-mode:lighten;   
  }
   
