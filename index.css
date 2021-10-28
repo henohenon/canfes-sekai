@@ -10,14 +10,6 @@ body {
 }
 
 
-.area{
-    background: #ffffff;  
-    background: -webkit-linear-gradient(to left, #ff007f, #ff007f);  
-    width: 100%;
-    height:100vh;
-    
-   
-}
 
 .circles{
     position: absolute;
@@ -147,3 +139,15 @@ body {
     width: 400px;
     height: 300px;
   }
+
+
+body {
+    background-image: url("images/CF謎11.png");
+    background-repeat: no-repeat;
+    background-position : 50%,50%;
+    background-attachment: fixed;
+    background-size: contain;  
+    background-color:rgba(255,255,255,0.8);
+    background-blend-mode:lighten;   
+ }
+  
