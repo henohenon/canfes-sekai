@@ -1,6 +1,6 @@
 // TextTypingというクラス名がついている子要素（span）を表示から非表示にする定義
 function TextTypingAnime() {
-	$('.TextTyping').each(function () {
+    $('.TextTyping').each(function () {
 		var elemPos = $(this).offset().top - 50;
 		var scroll = $(window).scrollTop();
 		var windowHeight = $(window).height();
@@ -27,17 +27,16 @@ function TextTypingAnime() {
 
 
 $(function () {
-  $(window).scroll(function () {
-    const wHeight = $(window).height();
-    const scrollAmount = $(window).scrollTop();
-    $('.scrollanime').each(function () {
-      const targetPosition = $(this).offset().top;
-      if(scrollAmount > targetPosition - wHeight + 60) {
-            console.log("あ");
-              $(this).addClass("fadeInDown");
-          }
-      });
-  });
+    $(window).scroll(function () {
+        const wHeight = $(window).height();
+        const scrollAmount = $(window).scrollTop();
+        $('.scrollanime').each(function () {
+            const targetPosition = $(this).offset().top;
+            if(scrollAmount > targetPosition - wHeight + 60) {
+                $(this).addClass("fadeInDown");
+            }
+        });
+    });
 
 	init();
 });
@@ -82,7 +81,37 @@ function init() {
     // 共通の更新処理呼び出し
     update();
 }
+$(window).on('load', function () {
+    var element = $(".TextTyping");
+    element.each(function () {
+        var text = $(this).html();
+        var textbox = "";
+        text.split('').forEach(function (t) {
+          if (t !== " ") {
+            textbox += '<span>' + t + '</span>';
+          } else {
+            textbox += t;
+          }
+    });
+    $(this).html(textbox);
 
+    $('#answerButton').on('click',async function() {
+        const answerInput=$('#answerInput').val();
+        const uint8  = new TextEncoder().encode(answerInput)
+        const digest = await crypto.subtle.digest('SHA-256', uint8)
+        const hash = Array.from(new Uint8Array(digest)).map(v => v.toString(16).padStart(2,'0')).join('');
+        if(hash == '90bd955ed49d354f75a16447e1554c8904ff7f7008dad1b687be087ce94f821d'){
+            $('#resultErea').text('正解！答えは'+answerInput+'です！');
+            sessionStorage.setItem('answer', answerInput);
+            $('.TextTyping').addClass('active');
+            TextTypingAnime();
+        }else{
+            $('#resultErea').text('残念...不正解です');
+            $('#answerInput').val('');
+        }
+    });
+    });
+  });
 function update() {
     for(var canvasIndex in canvasList) {
         var canvas = canvasList[canvasIndex];
