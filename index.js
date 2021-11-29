@@ -81,7 +81,13 @@ function init() {
     // 共通の更新処理呼び出し
     update();
 }
+
+
+const origin = 'https://henohenon.github.io/canfes-fukuoka/last.html';
 $(window).on('load', function () {
+    var iframeWindow = document.querySelector('#iframe').contentWindow;
+    iframeWindow.location.reload(true);
+    
     var element = $(".TextTyping");
     element.each(function () {
         var text = $(this).html();
@@ -92,8 +98,9 @@ $(window).on('load', function () {
           } else {
             textbox += t;
           }
+        });
+        $(this).html(textbox);
     });
-    $(this).html(textbox);
 
     $('#answerButton').on('click',async function() {
         const answerInput=$('#answerInput').val();
@@ -105,12 +112,13 @@ $(window).on('load', function () {
             sessionStorage.setItem('answer', answerInput);
             $('.TextTyping').addClass('active');
             TextTypingAnime();
+            iframeWindow.postMessage(`last,${answerInput}`, origin);
         }else{
             $('#resultErea').text('残念...不正解です');
             $('#answerInput').val('');
         }
     });
-    });
+    
   });
 function update() {
     for(var canvasIndex in canvasList) {
