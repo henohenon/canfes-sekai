@@ -55,6 +55,7 @@
     <script>
     (function() {
       var iframeWindow = document.querySelector('#iframe').contentWindow;
+      iframeWindow.location.reload(true);
       var $text = document.querySelector('#text');
       var $setButton = document.querySelector('#set');
       var $getButton = document.querySelector('#get');
