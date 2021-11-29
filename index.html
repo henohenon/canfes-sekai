@@ -18,11 +18,69 @@
   <script src="./index.js"></script>
 </head>
 <body>
+  <!--
   <div class="content">
     <p class="TextTyping">ABCDEFGHIJKLMN</p>
-  </div>
+  </div>-->
 
+  <!-- 謎用のpopup --> 
+  <!--
+  <div id="questionPopup">
+    <div id="qContent">
+      <img></img>
+      <input id="answerInput" placeholder="ひらがなで入力してね"></input><button id="answerButton">回答</button>-->
+      <!--
+      <div id="hintArea">
+        <div id="hint1">
+          <div id="hint1Button"></div>
+          <div class="hintText"></div>
+        </div>
+        <div id="hint2">
+          <div id="hint2Button"></div>
+          <div class="hintText"></div>
+        </div>
+      </div>
+      -->
+      <!--
+      <div id="resultErea"></div>
+      <button id="qPopupClose"></button>
+    </div>
+  </div>-->
+
+
+    <iframe id="iframe" src="https://henohenon.github.io/canfes-fukuoka/last.html" style="display: none;"></iframe>
+    <input type="text" name="text" id="text">
+    <button id="set">ストレージに値を入れる</button>
+    <button id="get">ストレージの値を取得する</button>
+    <script>
+    (function() {
+      var iframeWindow = document.querySelector('#iframe').contentWindow;
+      var $text = document.querySelector('#text');
+      var $setButton = document.querySelector('#set');
+      var $getButton = document.querySelector('#get');
+      var origin = 'https://henohenon.github.io/canfes-fukuoka/last.html';
+  
+      window.addEventListener('message', function(event) {
+        // 送信元が指定のオリジンと一致していれば処理を行う
+        alert(event.data);
+        if(event.origin === 'file:///Users/kitamuratakeru/workspace/canfes-fukuoka/') {
+        }
+      });
+  
+      $setButton.addEventListener('click', function() {
+        // テキストエリアに入力されている値を送信
+        iframeWindow.postMessage(`test,${$text.value}`, origin);
+      });
+  
+      $getButton.addEventListener('click', function() {
+        // localstorageの値の取得を要求するメッセージ送信
+        iframeWindow.postMessage('get', origin);
+      });
+  
+    })();
+    </script>
   <!-- 背景 -->
+  <!--
   <div id="backGround" >
     <ul class="circles">
       <li></li>
@@ -38,5 +96,6 @@
     </ul>
     <canvas id="waveCanvas"></canvas>
   </div >
+-->
 </body>
 </html>

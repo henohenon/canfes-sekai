@@ -9,10 +9,11 @@ body {
     padding: 0px;
 }
 
-
 /*1.フェードインアニメーションの指定*/
+/*
 .scrollanime { /* 一瞬表示されるのを防ぐ */
-    opacity: 0;
+  /*
+  opacity: 0;
   } 
   .fadeInDown {
       animation-name: fadeInDown;
@@ -186,6 +187,7 @@ body {
   }
   
   /*文字列後ろの線の設定*/
+  /*
   .TextTyping::after {
     content: "|";
     animation: typinganime .8s ease infinite;
@@ -194,4 +196,4 @@ body {
   @keyframes typinganime{
     from{opacity:0}
     to{opacity:1}
-  }
+  }*/
