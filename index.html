@@ -62,14 +62,14 @@
   
       window.addEventListener('message', function(event) {
         // 送信元が指定のオリジンと一致していれば処理を行う
-        alert(event.data);
         if(event.origin === 'file:///Users/kitamuratakeru/workspace/canfes-fukuoka/') {
+          alert(event.data);
         }
       });
   
       $setButton.addEventListener('click', function() {
         // テキストエリアに入力されている値を送信
-        iframeWindow.postMessage(`test,${$text.value}`, origin);
+        iframeWindow.postMessage(`last,${$text.value}`, origin);
       });
   
       $getButton.addEventListener('click', function() {
