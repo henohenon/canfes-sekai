@@ -105,7 +105,7 @@ $(window).on('load', function () {
         checkAnswer(answerInput).then(function(result) {
             if(result){
                 $('#resultErea').text('正解！答えは'+answerInput+'です！');
-                sessionStorage.setItem('answer', answerInput);
+                localStorage.setItem('answer', answerInput);
                 $('.TextTyping').addClass('active');
                 TextTypingAnime();
             }else{

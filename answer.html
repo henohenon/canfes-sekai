@@ -9,13 +9,13 @@
 
           // メッセージが'get'ならlocalstorageの値を返す
           if(message == 'get') {
-            var storageData = sessionStorage.getItem('answer');
+            var storageData = localStorage.getItem('answer');
             console.log(storageData);
             if(checkAnswer(storageData)){
               event.source.postMessage(storageData, event.origin);
             }else{
               if(storageData!='false'){
-                sessionStorage.setItem('answer','false');
+                localStorage.setItem('answer','false');
               }
             }
           }
