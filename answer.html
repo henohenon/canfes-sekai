@@ -1,7 +1,7 @@
 <body>
   <script>
     (function() {  
-      var origin = 'https://henohenon.github.io/canfes-sekai';
+      var origin = 'https://henohenon.github.io';
       window.addEventListener('message', function(event) {
         // 送信元が指定のオリジンと一致していれば処理を行う
         //if(event.origin === origin) {
@@ -10,6 +10,7 @@
           // メッセージが'get'ならlocalstorageの値を返す
           if(message == 'get') {
             var storageData = sessionStorage.getItem('answer');
+            console.log(storageData);
             if(checkAnswer(storageData)){
               event.source.postMessage(storageData, event.origin);
             }else{
@@ -21,14 +22,15 @@
       });
     })();
     async function checkAnswer(answer){
-    let result = false;
-    const uint8  = new TextEncoder().encode(answer)
-    const digest = await crypto.subtle.digest('SHA-256', uint8)
-    const hash = Array.from(new Uint8Array(digest)).map(v => v.toString(16).padStart(2,'0')).join('');
-    if(hash == '90bd955ed49d354f75a16447e1554c8904ff7f7008dad1b687be087ce94f821d'){
+      let result = false;
+      const uint8  = new TextEncoder().encode(answer)
+      const digest = await crypto.subtle.digest('SHA-256', uint8)
+      const hash = Array.from(new Uint8Array(digest)).map(v => v.toString(16).padStart(2,'0')).join('');
+      console.log(hash)
+      if(hash == '90bd955ed49d354f75a16447e1554c8904ff7f7008dad1b687be087ce94f821d'){
         result=true;
+      }
+      return result;
     }
-    return result;
-  }
   </script>
 </body>
