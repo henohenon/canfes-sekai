@@ -85,8 +85,6 @@ function init() {
 
 const origin = 'https://henohenon.github.io/canfes-fukuoka/last.html';
 $(window).on('load', function () {
-    var iframeWindow = document.querySelector('#iframe').contentWindow;
-    iframeWindow.location.reload(true);
     
     var element = $(".TextTyping");
     element.each(function () {
@@ -104,22 +102,32 @@ $(window).on('load', function () {
 
     $('#answerButton').on('click',async function() {
         const answerInput=$('#answerInput').val();
-        const uint8  = new TextEncoder().encode(answerInput)
-        const digest = await crypto.subtle.digest('SHA-256', uint8)
-        const hash = Array.from(new Uint8Array(digest)).map(v => v.toString(16).padStart(2,'0')).join('');
-        if(hash == '90bd955ed49d354f75a16447e1554c8904ff7f7008dad1b687be087ce94f821d'){
-            $('#resultErea').text('正解！答えは'+answerInput+'です！');
-            sessionStorage.setItem('answer', answerInput);
-            $('.TextTyping').addClass('active');
-            TextTypingAnime();
-            iframeWindow.postMessage(`last,${answerInput}`, origin);
-        }else{
-            $('#resultErea').text('残念...不正解です');
-            $('#answerInput').val('');
-        }
+        checkAnswer(answerInput).then(function(result) {
+            if(result){
+                $('#resultErea').text('正解！答えは'+answerInput+'です！');
+                sessionStorage.setItem('answer', answerInput);
+                $('.TextTyping').addClass('active');
+                TextTypingAnime();
+            }else{
+                $('#resultErea').text('残念...不正解です');
+                $('#answerInput').val('');
+            }
+        })
     });
     
   });
+
+
+  async function checkAnswer(answer){
+    let result = false;
+    const uint8  = new TextEncoder().encode(answer)
+    const digest = await crypto.subtle.digest('SHA-256', uint8)
+    const hash = Array.from(new Uint8Array(digest)).map(v => v.toString(16).padStart(2,'0')).join('');
+    if(hash == '90bd955ed49d354f75a16447e1554c8904ff7f7008dad1b687be087ce94f821d'){
+        result=true;
+    }
+    return result;
+  }
 function update() {
     for(var canvasIndex in canvasList) {
         var canvas = canvasList[canvasIndex];
