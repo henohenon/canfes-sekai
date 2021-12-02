@@ -26,9 +26,10 @@
       const uint8  = new TextEncoder().encode(answer)
       const digest = await crypto.subtle.digest('SHA-256', uint8)
       const hash = Array.from(new Uint8Array(digest)).map(v => v.toString(16).padStart(2,'0')).join('');
-      console.log(hash)
-      if(hash == '90bd955ed49d354f75a16447e1554c8904ff7f7008dad1b687be087ce94f821d'){
-        result=true;
+      console.log(hash ==='90bd955ed49d354f75a16447e1554c8904ff7f7008dad1b687be087ce94f821d');
+      if(hash === '90bd955ed49d354f75a16447e1554c8904ff7f7008dad1b687be087ce94f821d'){
+        console.log(hash)
+        result = true;
       }
       return result;
     }
