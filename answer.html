@@ -11,7 +11,6 @@
           if(message == 'get') {
             var storageData = localStorage.getItem('answer');
             if(checkAnswer(storageData)){
-              console.log(result)
               event.source.postMessage(storageData, event.origin);
             }else{
               if(storageData!='false'){
@@ -30,6 +29,7 @@
       if(hash === '90bd955ed49d354f75a16447e1554c8904ff7f7008dad1b687be087ce94f821d'){
         result = true;
       }
+      console.log(result)
       return result;
     }
   </script>
