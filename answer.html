@@ -11,6 +11,7 @@
           if(message == 'get') {
             var storageData = localStorage.getItem('answer');
             if(checkAnswer(storageData)){
+              console.log(storageData)
               event.source.postMessage(storageData, event.origin);
             }else{
               if(storageData!='false'){
