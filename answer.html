@@ -11,7 +11,7 @@
           if(message == 'get') {
             var storageData = localStorage.getItem('answer');
             if(checkAnswer(storageData)){
-              console.log(storageData)
+              console.log(result)
               event.source.postMessage(storageData, event.origin);
             }else{
               if(storageData!='false'){
@@ -26,6 +26,7 @@
       const uint8  = new TextEncoder().encode(answer)
       const digest = await crypto.subtle.digest('SHA-256', uint8)
       const hash = Array.from(new Uint8Array(digest)).map(v => v.toString(16).padStart(2,'0')).join('');
+      console.log(hash,answer);
       if(hash === '90bd955ed49d354f75a16447e1554c8904ff7f7008dad1b687be087ce94f821d'){
         result = true;
       }
