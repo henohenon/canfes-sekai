@@ -10,6 +10,7 @@
           // メッセージが'get'ならlocalstorageの値を返す
           if(message == 'get') {
             var storageData = localStorage.getItem('answer');
+            console.log('ここまではきた');
             makeHash(storageData).then(result => {
               if(result === '90bd955ed49d354f75a16447e1554c8904ff7f7008dad1b687be087ce94f821d'){
                 event.source.postMessage(storageData, event.origin);
