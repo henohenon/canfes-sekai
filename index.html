@@ -18,11 +18,24 @@
   
   <!-- js -->
   <script src="./index.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
 <body>
   <!-- 背景 -->
   <div id="backGround" >
-    <ul class="circles">
+    <ul id="blackCircles" class="circles black">
+      <li class="noneBack"><img src="./images/background/bg_64pPqX.png"></img></li>
+      <li class="noneBack"><img src="./images/background/bg_9iSuGg.png"></img></li>
+      <li class="noneBack"><img src="./images/background/bg_s9KgPE.png"></img></li>
+      <li class="noneBack"><img src="./images/background/bg_VKv6es.png"></img></li>
+      <li class="noneBack"><img src="./images/background/bg_FSiUm3.png"></img></li>
+      <li class="noneBack"><img src="./images/background/bg_Unsj8n.png"></img></li>
+      <li class="noneBack"><img src="./images/background/bg_WH8p7i.png"></img></li>
+      <li class="noneBack"><img src="./images/background/bg_pY3ASk.png"></img></li>
+      <li class="noneBack"><img src="./images/background/bg_QU6z84.png"></img></li>
+      <li class="noneBack"><img src="./images/background/bg_m9tFFA.png"></img></li>
+    </ul>
+    <ul id="whiteCircles" class="circles white">
       <li></li>
       <li></li>
       <li></li>
@@ -38,9 +51,16 @@
   </div >
 
   <div class="content">
-    <p class="TextTyping">おつかれさま！</p>
-    <div id="answerArea"><input id="answerInput"></input><button id="answerButton">回答</button></div>
-    <div id="resultErea"></div>
+    <p class="TextTyping"></p>
+    <div id="answerArea" class="black"><input id="answerInput"></input><button id="answerButton">回答</button></div>
+    <div id="resultErea" class="black"></div>
+    <div id="whiteBackgroundArea">
+      <div id="whiteBackground">
+        <img src="images/background.png">
+      </div>
+    </div>
+    <div id="blackBackground" class="black"></div>
   </div>
+  
 </body>
 </html>

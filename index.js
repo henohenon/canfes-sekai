@@ -37,8 +37,7 @@ $(function () {
             }
         });
     });
-
-	init();
+    init();
 });
 
 
@@ -85,34 +84,74 @@ function init() {
 
 const origin = 'https://henohenon.github.io/canfes-fukuoka/last.html';
 $(window).on('load', function () {
-    
-    var element = $(".TextTyping");
-    element.each(function () {
-        var text = $(this).html();
-        var textbox = "";
-        text.split('').forEach(function (t) {
-          if (t !== " ") {
-            textbox += '<span>' + t + '</span>';
-          } else {
-            textbox += t;
-          }
-        });
-        $(this).html(textbox);
-    });
-
     $('#answerButton').on('click',async function() {
         const answerInput=$('#answerInput').val();
         checkAnswer(answerInput).then(function(result) {
             if(result){
-                $('#resultErea').text('正解！答えは'+answerInput+'です！');
                 localStorage.setItem('answer', answerInput);
+                $('.TextTyping').text(answerInput);
+                $(".TextTyping").each(function () {
+                    var text = $(this).html();
+                    var textbox = "";
+                    text.split('').forEach(function (t) {
+                      if (t !== " ") {
+                        textbox += '<span>' + t + '</span>';
+                      } else {
+                        textbox += t;
+                      }
+                    });
+                    $(this).html(textbox);
+                });
+
                 $('.TextTyping').addClass('active');
-                TextTypingAnime();
+                $("body").addClass('modeWhite');
+                $(".white").each(function(index, element) {
+                    $(element).removeClass("out");
+                    $(element).addClass("in");
+                });
+                $(".black").each(function(index, element) {
+                    $(element).removeClass("in");
+                    $(element).addClass("out");
+                });  
+                setTimeout(function(){TextTypingAnime();},8000);      
+                setTimeout(function(){jQuery('#whiteBackground').toggle('explode', {pieces: 25}, 2000);},6000);      
             }else{
                 $('#resultErea').text('残念...不正解です');
                 $('#answerInput').val('');
             }
         })
+    });
+    var storageData = localStorage.getItem('answer');
+    checkAnswer(storageData).then(function(result) {
+        if(result){
+            $('.TextTyping').text(storageData);
+            $(".TextTyping").each(function () {
+                var text = $(this).html();
+                var textbox = "";
+                text.split('').forEach(function (t) {
+                  if (t !== " ") {
+                    textbox += '<span>' + t + '</span>';
+                  } else {
+                    textbox += t;
+                  }
+                });
+                $(this).html(textbox);
+            });
+            $('.TextTyping').addClass('active');   
+            TextTypingAnime();
+        }else{
+            jQuery('#whiteBackground').toggle('explode', {
+                pieces: 25
+            }, 1000);
+            $("body").addClass('modeBlack');
+            $(".white").each(function(index, element) {
+                $(element).addClass("out");
+            });
+            $(".black").each(function(index, element) {
+                console.log(element);
+                $(element).addClass("in");
+            });
+        }
     });
     
   });
@@ -123,7 +162,7 @@ $(window).on('load', function () {
     const uint8  = new TextEncoder().encode(answer)
     const digest = await crypto.subtle.digest('SHA-256', uint8)
     const hash = Array.from(new Uint8Array(digest)).map(v => v.toString(16).padStart(2,'0')).join('');
-    if(hash == '90bd955ed49d354f75a16447e1554c8904ff7f7008dad1b687be087ce94f821d'){
+    if(hash == '858b216a48ecf276795a85d5ac8407caf17d9cba1272f4b97df6fda0a964fd7d'){
         result=true;
     }
     return result;
@@ -198,4 +237,5 @@ function drawSine(canvas, t, zoom, delay) {
         context.lineTo(i, unit*y+xAxis);
     }
 }
+
 

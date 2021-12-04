@@ -1,8 +1,20 @@
 body {
-    font-family: "ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO";;
-  background-color: black;
+  font-family: "ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO";;
+}
+body.modeBlack{
+  animation: backgroundToBlack 10s forwards;
+}
+body.modeWhite{
+  animation: backgroundToWhite 10s;
+}
+  @keyframes backgroundToBlack{
+    from{background-color: white;}
+    to{background-color: black;}
   }
-
+  @keyframes backgroundToWhite{
+    from{background-color: black;}
+    to{background-color: white;}
+  }
   @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
 
 *{
@@ -51,14 +63,19 @@ body {
   
   .circles li{
     position: absolute;
-    display: block;
     list-style: none;
     width: 20px;
     height: 20px;
     background: #ff007f;
     animation: animate 25s linear infinite;
-    bottom: -150px;
-    
+    bottom: -150px; 
+  }
+  .circles li.noneBack{
+    background: #ff008000;
+  }
+  .circles li img {
+    width: 100%;
+    height: 100%;
   }
   
   .circles li:nth-child(1){
@@ -164,15 +181,14 @@ body {
     text-align: center;
     margin: auto;
     height: 600px;
+    z-index: 2;
   }
 
 h1 {
   font-size: 120px;
 }
-
-
-#backGround {
-  background-image: url(./images/NFNazo_53ir6z.png);
+#blackBackground {
+  background-image: url(./images/CFNazo_z6ri35.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -183,15 +199,13 @@ h1 {
   position: fixed;
   z-index: -3; 
  }
-.TextTyping {
-  font-size: 60px;
-}
 
 .TextTyping {
-  display: none;
+  opacity: 0;
+  font-size: 35px;
 }
 .TextTyping.active {
-  display: block;
+  opacity: 1;
 }
  .TextTyping span {
     display: none;
@@ -205,17 +219,59 @@ h1 {
 
   #answerArea{
     position: absolute;
-    bottom: 55%;
+    bottom: 48%;
     width: 100%;
+    z-index: 10;
   }
   
   #resultErea{
     position: absolute;
-    bottom: 50%;
+    bottom: 20%;
     width: 100%;
+    color: white;
   }
   
   @keyframes typinganime{
     from{opacity:0}
     to{opacity:1}
   }
+#whiteBackgroundArea{
+  position: fixed;
+  height: 100%;
+  width: 100%;
+}
+
+#whiteBackground{
+  width: 600px;
+  margin: auto;
+}
+#whiteBackground img{
+  width: 100%;
+}
+
+.out{
+  animation: out 10s forwards;
+}
+.in{
+  animation: in 10s forwards;
+}
+.black{
+  opacity: 0;
+}
+@keyframes out{
+  from{opacity: 1;}
+  to{opacity: 0;}
+}
+
+@keyframes in{
+  from{opacity: 0;}
+  to{opacity: 1;}
+}
+
+@media screen and (max-width: 768px) {
+  #whiteBackground{
+    width: 300px;
+    margin: auto;
+    margin-top: 50px;
+  }
+}
