@@ -88,8 +88,9 @@ $(window).on('load', function () {
         const answerInput=$('#answerInput').val();
         checkAnswer(answerInput).then(function(result) {
             if(result){
+                $("#answerButton").css("pointer-events", "none")
                 localStorage.setItem('answer', answerInput);
-                $('.TextTyping').text(answerInput);
+                $('.TextTyping').text(answerInput+"！");
                 $(".TextTyping").each(function () {
                     var text = $(this).html();
                     var textbox = "";
@@ -114,7 +115,10 @@ $(window).on('load', function () {
                     $(element).addClass("out");
                 });  
                 setTimeout(function(){TextTypingAnime();},8000);      
-                setTimeout(function(){jQuery('#whiteBackground').toggle('explode', {pieces: 25}, 2000);},6000);      
+                setTimeout(function(){
+                    jQuery('#whiteBackground').toggle('explode', {pieces: 25}, 2000);
+                    $("#share").addClass("active");
+                },6000);      
             }else{
                 $('#resultErea').text('残念...不正解です');
                 $('#answerInput').val('');
@@ -124,7 +128,7 @@ $(window).on('load', function () {
     var storageData = localStorage.getItem('answer');
     checkAnswer(storageData).then(function(result) {
         if(result){
-            $('.TextTyping').text(storageData);
+            $('.TextTyping').text(storageData+"！");
             $(".TextTyping").each(function () {
                 var text = $(this).html();
                 var textbox = "";
@@ -137,7 +141,8 @@ $(window).on('load', function () {
                 });
                 $(this).html(textbox);
             });
-            $('.TextTyping').addClass('active');   
+            $('.TextTyping').addClass('active'); 
+            $("#share").addClass("active");  
             TextTypingAnime();
         }else{
             jQuery('#whiteBackground').toggle('explode', {
